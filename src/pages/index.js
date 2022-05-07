@@ -1,4 +1,5 @@
 import { Route, Routes } from "react-router-dom";
+import { ProtectedRoute } from "../components/ProtectedRoute";
 import { StyledPage } from "../components/StyledPage";
 import { Deliveries } from "./Deliveries";
 import { NotFound } from "./NotFound";
@@ -9,7 +10,7 @@ const Pages = () => {
     <Routes>
       <Route path="/" element={<Root />}>
         <Route index element={<StyledPage />} />
-        <Route path="/deliveries" element={<Deliveries />} />
+        <Route path="/deliveries" element={<ProtectedRoute><Deliveries /></ProtectedRoute>} />
         <Route path="*" element={<NotFound />} />
       </Route>
     </Routes>
