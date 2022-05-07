@@ -1,0 +1,3 @@
+const Deliveries = () => {};
+
+export { Deliveries };
