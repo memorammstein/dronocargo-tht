@@ -26,9 +26,7 @@ const StyledSignIn = styled(Link)`
 const StyledUserContainer = styled.div`
   align-items: center;
   display: flex;
-  &>*:not(:last-child) {
-    margin-right: 0.625rem;
-  }
+  gap: 0.625rem;
 `;
 
 const StyledUserAvatar = styled(Avatar)``;
