@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
 const StyledTitle = styled.h1`
-  font-size: 3rem;
-  font-weight: 200;
+  font-size: 1.875rem;
+  font-weight: 400;
   margin: 0;
 `;
 
