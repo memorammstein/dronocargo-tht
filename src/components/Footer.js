@@ -5,7 +5,7 @@ const StyledHeader = styled.footer`
   display: flex;
   flex-shrink: 0;
   justify-content: space-between;
-  padding: 2rem;
+  padding: 3rem 2rem 4rem;
 `;
 
 const Footer = () => {
