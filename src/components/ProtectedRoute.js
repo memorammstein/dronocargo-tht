@@ -6,7 +6,7 @@ const ProtectedRoute = ({ children }) => {
   const { isSignedIn } = useAuthContext();
 
   if (!isSignedIn) {
-    return <StyledPage>Log in to view this</StyledPage>;
+    return <StyledPage>Sign in to view this</StyledPage>;
   }
 
   return children ? children : <Outlet />;
