@@ -9,6 +9,7 @@ const StyledActionsButton = styled.button`
   border-radius: 4px;
   box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.1);
   color: inherit;
+  cursor: pointer;
   display: inline-flex;
   font-weight: 500;
   gap: 1rem;
