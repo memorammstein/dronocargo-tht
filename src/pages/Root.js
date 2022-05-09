@@ -11,7 +11,7 @@ const StyledRoot = styled.div`
 
 const Root = () => {
   return (
-    <StyledRoot>
+    <StyledRoot id="app">
       <Header />
         <Outlet />
       <Footer />
