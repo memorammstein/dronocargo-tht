@@ -1,6 +1,7 @@
 import React, { useCallback, useState } from "react";
 import styled from "styled-components";
 import { DeliveriesTable } from "../components/DeliveriesTable";
+import { DeliveryAddForm } from "../components/DeliveryAddForm";
 import { StyledButton } from "../components/StyledButton";
 import { StyledInput } from "../components/StyledInput";
 import { StyledPage } from "../components/StyledPage";
@@ -39,6 +40,7 @@ const saveDeliveries = (deliveries = []) => {
 
 const Deliveries = () => {
   const [deliveries, setDeliveries] = useState(fetchDeliveries());
+  const [deliveryAddFormIsOpen, setDeliveryAddFormIsOpen] = useState(false);
 
   const handleAddNewDelivery = useCallback((delivery) => {
     setDeliveries((prev) => {
@@ -47,6 +49,18 @@ const Deliveries = () => {
       return updatedDeliveries;
     });
   }, []);
+
+  const handleDeliveryAddFormClose = useCallback(() => {
+    setDeliveryAddFormIsOpen(false);
+  }, []);
+
+  const handleDeliveryAddFormOpen = useCallback(() => {
+    setDeliveryAddFormIsOpen(true);
+  }, []);
+
+  const handleDeliveryAddFormSubmit = useCallback((data) => {
+    handleAddNewDelivery(data);
+  }, [handleAddNewDelivery]);
 
   return (
     <StyledPage>
@@ -58,11 +72,16 @@ const Deliveries = () => {
           </StyledDeliveriesListHeadSection>
           <StyledDeliveriesListHeadSection>
             <StyledInput placeholder="Search" type="search" />
-            <StyledButton onClick={handleAddNewDelivery} primary>New Delivery</StyledButton>
+            <StyledButton onClick={handleDeliveryAddFormOpen} primary>New Delivery</StyledButton>
           </StyledDeliveriesListHeadSection>
         </StyledDeliveriesListHead>
         <DeliveriesTable deliveries={deliveries} />
       </StyledDeliveriesList>
+      <DeliveryAddForm
+        isOpen={deliveryAddFormIsOpen}
+        onClose={handleDeliveryAddFormClose}
+        onSubmit={handleDeliveryAddFormSubmit}
+      />
     </StyledPage>
   );
 };
