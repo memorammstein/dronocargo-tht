@@ -1,25 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+import { useCallback, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { AuthContext, AuthContextDefaultProps } from "./contexts/AuthContext";
+import { Pages } from "./pages";
 
-function App() {
+const App = () => {
+  const navigate = useNavigate();
+  const [authContext, setAuthContext] = useState(AuthContextDefaultProps);
+
+  const handleSignIn = useCallback(() => {
+    setAuthContext((prev) => ({
+      ...prev,
+      isSignedIn: true,
+      user: {
+        name: "Regina Zepeda",
+      }
+    }));
+    navigate("/deliveries");
+  }, [navigate]);
+
+  useEffect(() => {
+    setAuthContext((prev) => ({ ...prev, signIn: handleSignIn }));
+  }, [handleSignIn]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <AuthContext.Provider value={authContext}>
+      <Pages />
+    </AuthContext.Provider>
   );
-}
+};
 
-export default App;
+export { App };
