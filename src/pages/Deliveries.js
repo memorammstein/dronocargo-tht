@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useState } from "react";
 import styled from "styled-components";
 import { DeliveryActionsDropdown } from "../components/DeliveryActionsDropdown";
 import { ShipmentDetailsButton } from "../components/ShipmentDetailsButton";
@@ -56,6 +56,19 @@ const StyledDeliveriesListTableCellText = styled.span``;
 const StyledDeliveryStatus = styled.span`
   font-weight: 500;
 `;
+
+const DELIVERIES_STORAGE_KEY = "deliveries";
+
+const fetchDeliveries = () => {
+  const fetchedDeliveries = (JSON.parse(localStorage.getItem(DELIVERIES_STORAGE_KEY)) || []).map(
+    (delivery) => ({ ...delivery, fresh: false })
+  );
+  return fetchedDeliveries;
+};
+
+const saveDeliveries = (deliveries = []) => {
+  localStorage.setItem(DELIVERIES_STORAGE_KEY, JSON.stringify(deliveries));
+};
 
 const DeliveryRow = ({
   drone = "",
@@ -129,21 +142,14 @@ const DeliveryRow = ({
 };
 
 const Deliveries = () => {
-  const [deliveries, setDeliveries] = useState([{ fresh: true }, {}]);
-
-  useEffect(() => {
-    const retrievedDeliveries = (JSON.parse(localStorage.getItem("deliveries")) || []).map(
-      (delivery) => ({ ...delivery, fresh: false })
-    );
-    setDeliveries(retrievedDeliveries);
-  }, []);
-
-  useEffect(() => {
-    localStorage.setItem("deliveries", JSON.stringify(deliveries));
-  }, [deliveries]);
+  const [deliveries, setDeliveries] = useState(fetchDeliveries());
 
   const handleAddNewDelivery = useCallback((delivery) => {
-    setDeliveries((prev) => [{ ...delivery, fresh: true }, ...prev]);
+    setDeliveries((prev) => {
+      const updatedDeliveries = [{ fresh: true }, ...prev];
+      saveDeliveries(updatedDeliveries);
+      return updatedDeliveries;
+    });
   }, []);
 
   return (
@@ -156,7 +162,7 @@ const Deliveries = () => {
           </StyledDeliveriesListHeadSection>
           <StyledDeliveriesListHeadSection>
             <StyledInput placeholder="Search" type="search" />
-            <StyledButton primary>New Delivery</StyledButton>
+            <StyledButton onClick={handleAddNewDelivery} primary>New Delivery</StyledButton>
           </StyledDeliveriesListHeadSection>
         </StyledDeliveriesListHead>
         <StyledDeliveriesListTable>
