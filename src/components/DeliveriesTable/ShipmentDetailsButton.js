@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import detailsIcon from "../assets/view_sidebar.png";
+import detailsIcon from "../../assets/view_sidebar.png";
 
 const StyledDetailsButton = styled(Link)`
   align-items: center;

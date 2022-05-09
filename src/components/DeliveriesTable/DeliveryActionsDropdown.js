@@ -1,8 +1,8 @@
 import React, { useCallback, useState } from "react";
 import { usePopper } from "react-popper";
 import styled from "styled-components";
-import chevronImg from "../assets/chevron.png";
-import { StyledButton } from "./StyledButton";
+import chevronImg from "../../assets/chevron.png";
+import { StyledButton } from "../StyledButton";
 
 const StyledActionsButtonChevron = styled.img`
   height: 8px;
