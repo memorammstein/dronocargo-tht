@@ -21,7 +21,9 @@ const StyledDeliveriesListTableCellTitle = styled.div`
   font-size: 0.875rem;
 `;
 
-const StyledDeliveriesListTableCellText = styled.span``;
+const StyledDeliveriesListTableCellText = styled.span`
+  line-height: 1.5rem;
+`;
 
 const StyledDeliveryStatus = styled.span`
   font-weight: 500;

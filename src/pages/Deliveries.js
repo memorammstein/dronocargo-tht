@@ -44,7 +44,7 @@ const Deliveries = () => {
 
   const handleAddNewDelivery = useCallback((delivery) => {
     setDeliveries((prev) => {
-      const updatedDeliveries = [{ fresh: true }, ...prev];
+      const updatedDeliveries = [{ ...delivery, fresh: true, status: "Ready", technicalCheck: "Passed" }, ...prev];
       saveDeliveries(updatedDeliveries);
       return updatedDeliveries;
     });
@@ -59,8 +59,10 @@ const Deliveries = () => {
   }, []);
 
   const handleDeliveryAddFormSubmit = useCallback((data) => {
+    console.log(data);
+    handleDeliveryAddFormClose();
     handleAddNewDelivery(data);
-  }, [handleAddNewDelivery]);
+  }, [handleAddNewDelivery, handleDeliveryAddFormClose]);
 
   return (
     <StyledPage>
