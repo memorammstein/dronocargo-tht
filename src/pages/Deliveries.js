@@ -2,7 +2,11 @@ import React, { useCallback, useEffect, useState } from "react";
 import styled from "styled-components";
 import { DeliveryActionsDropdown } from "../components/DeliveryActionsDropdown";
 import { ShipmentDetailsButton } from "../components/ShipmentDetailsButton";
+import { StyledButton } from "../components/StyledButton";
+import { StyledInput } from "../components/StyledInput";
 import { StyledPage } from "../components/StyledPage";
+import { StyledSubtitle } from "../components/StyledSubtitle";
+import { StyledTitle } from "../components/StyledTitle";
 
 const StyledDeliveriesList = styled.div`
   display: flex;
@@ -11,8 +15,14 @@ const StyledDeliveriesList = styled.div`
 `;
 
 const StyledDeliveriesListHead = styled.div`
+  align-items: center;
   display: flex;
   justify-content: space-between;
+`;
+
+const StyledDeliveriesListHeadSection = styled.div`
+  display: inline-flex;
+  gap: 1rem;
 `;
 
 const StyledDeliveriesListTable = styled.table`
@@ -139,7 +149,16 @@ const Deliveries = () => {
   return (
     <StyledPage>
       <StyledDeliveriesList>
-        <StyledDeliveriesListHead></StyledDeliveriesListHead>
+        <StyledDeliveriesListHead>
+          <StyledDeliveriesListHeadSection>
+            <StyledTitle>Delivery</StyledTitle>
+            <StyledSubtitle>History</StyledSubtitle>
+          </StyledDeliveriesListHeadSection>
+          <StyledDeliveriesListHeadSection>
+            <StyledInput placeholder="Search" type="search" />
+            <StyledButton primary>New Delivery</StyledButton>
+          </StyledDeliveriesListHeadSection>
+        </StyledDeliveriesListHead>
         <StyledDeliveriesListTable>
           <StyledDeliveriesListTableBody>
             {deliveries.map((delivery, index) => <DeliveryRow key={index} {...delivery} />)}

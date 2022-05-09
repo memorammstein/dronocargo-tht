@@ -2,20 +2,7 @@ import React, { useCallback, useState } from "react";
 import { usePopper } from "react-popper";
 import styled from "styled-components";
 import chevronImg from "../assets/chevron.png";
-
-const StyledActionsButton = styled.button`
-  all: unset;
-  border: 1px solid rgba(0, 0, 0, 0.15);
-  border-radius: 4px;
-  box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.1);
-  color: inherit;
-  cursor: pointer;
-  display: inline-flex;
-  font-weight: 500;
-  gap: 1rem;
-  line-height: 1.5rem;
-  padding: 0.75rem 1rem;
-`;
+import { StyledButton } from "./StyledButton";
 
 const StyledActionsButtonChevron = styled.img`
   height: 8px;
@@ -53,10 +40,10 @@ const DeliveryActionsDropdown = ({ onEdit, onDelete }) => {
 
   return (
     <>
-      <StyledActionsButton onBlur={handleBlur} onClick={handleClick} ref={setReferenceElement}>
+      <StyledButton onBlur={handleBlur} onClick={handleClick} ref={setReferenceElement}>
         Actions
         <StyledActionsButtonChevron alt="chevron" src={chevronImg} />
-      </StyledActionsButton>
+      </StyledButton>
       {isOpen ? (
         <StyledActionsPopover ref={setPopperElement} style={styles.popper} {...attributes.popper}>
           <StyledActionsPopoverOption>Edit</StyledActionsPopoverOption>
